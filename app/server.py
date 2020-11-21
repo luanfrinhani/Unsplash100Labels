@@ -76,21 +76,7 @@ async def analyze(request):
 
     prediction = learn.predict(img)[2]
 
-    bests = sorted_prob(classes, prediction)
-
-    return JSONResponse({'result': str(bests)})
-
-@app.route('/randoms', methods=['GET'])
-async def randoms(request):
-    response = requests.get('https://source.unsplash.com/500x500/')
-    imgraw = BytesIO(response.content)
-    img = open_image(imgraw)
-
-    prediction = learn.predict(img)[2]
-
-    bests = sorted_prob(classes, prediction)
-
-    return JSONResponse({'result': str(bests), 'url': response.url})
+    return JSONResponse({'result': str(prediction)})
 
 if __name__ == '__main__':
     if 'serve' in sys.argv:
