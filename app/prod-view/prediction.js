@@ -81,33 +81,8 @@ var Prediction = function (_React$Component) {
       }
     };
 
-    _this.getRandoms = function (e) {
-      if (!_this.state.gettingRandoms) {
-        _this.setState({
-          randomtxt: "Obtaining...",
-          gettingRandoms: true
-        });
-
-        fetch("/randoms").then(function (response) {
-          return response.json();
-        }).then(function (jsonResponse) {
-          _this.setState({
-            randomResult: _this.parseResults(JSON.parse(jsonResponse.result)),
-            imgRandRaw: jsonResponse.url,
-            randoms: true,
-            randomtxt: "Random",
-            gettingRandoms: false,
-            notifications: ''
-          });
-        });
-      } else {
-        _this.setState({ notifications: "Working on it!" });
-      }
-    };
-
     _this.state = {
       selectedFile: null,
-      randomtxt: 'Random',
       uploadLabel: 'Select an image to classify',
       btnAnalyze: 'Analyze',
       imgPickedRaw: '',
@@ -115,10 +90,7 @@ var Prediction = function (_React$Component) {
       notifications: '',
       fileSelected: false,
       imgPicked: false,
-      randoms: false,
       analyzing: false,
-      gettingRandoms: false,
-      randomResult: [],
       labelsresult: []
     };
     return _this;
@@ -177,18 +149,6 @@ var Prediction = function (_React$Component) {
             this.state.randomtxt
           )
         ),
-        React.createElement(
-          'div',
-          { className: 'predictionWrap' },
-          React.createElement(Image, {
-            imgPicked: this.state.imgPicked,
-            imgPickedRaw: this.state.imgPickedRaw,
-            labelsresult: this.state.labelsresult }),
-          React.createElement(Image, {
-            imgPicked: this.state.randoms,
-            imgPickedRaw: this.state.imgRandRaw,
-            labelsresult: this.state.randomResult })
-        )
       );
     }
   }]);
