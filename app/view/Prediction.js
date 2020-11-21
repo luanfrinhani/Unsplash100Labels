@@ -10,9 +10,7 @@ class Prediction extends React.Component {
       notifications: '',
       fileSelected: false,
       imgPicked: false,
-      randoms: false,
       analyzing: false,
-      gettingRandoms: false,
       labelsresult: [],
     }
   }
