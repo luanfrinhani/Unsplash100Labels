@@ -3,7 +3,6 @@ class Prediction extends React.Component {
     super(props);
     this.state = {
       selectedFile: null,
-      randomtxt: 'Random',
       uploadLabel: 'Select an image to classify',
       btnAnalyze: 'Analyze',
       imgPickedRaw: '',
@@ -14,7 +13,6 @@ class Prediction extends React.Component {
       randoms: false,
       analyzing: false,
       gettingRandoms: false,
-      randomResult: [],
       labelsresult: [],
     }
   }
@@ -78,31 +76,6 @@ class Prediction extends React.Component {
     }
   }
 
-  getRandoms = (e) => {
-    if (!this.state.gettingRandoms) {
-      this.setState({
-        randomtxt: "Obtaining...",
-        gettingRandoms: true
-      })
-
-      fetch("/randoms")
-        .then(function (response) {
-          return response.json();
-        })
-        .then(jsonResponse => {
-          this.setState({
-            randomResult: this.parseResults(JSON.parse(jsonResponse.result)),
-            imgRandRaw: jsonResponse.url,
-            randoms: true,
-            randomtxt: "Random",
-            gettingRandoms: false,
-            notifications: ''
-          })
-        });
-    } else {
-      this.setState({ notifications: "Working on it!" })
-    }
-
 
   }
   render() {
@@ -131,21 +104,12 @@ class Prediction extends React.Component {
             className='analyze-button'
             type='button'
             onClick={this.sendToAnalyze}>{this.state.btnAnalyze}</button>
-          <button
-            id='analyze-button'
-            className='analyze-button'
-            type='button'
-            onClick={this.getRandoms}>{this.state.randomtxt}</button>
         </div>
         <div className='predictionWrap'>
           <Image
             imgPicked={this.state.imgPicked}
             imgPickedRaw={this.state.imgPickedRaw}
             labelsresult={this.state.labelsresult} />
-          <Image
-            imgPicked={this.state.randoms}
-            imgPickedRaw={this.state.imgRandRaw}
-            labelsresult={this.state.randomResult} />
         </div>
       </div>
     )
