@@ -2,9 +2,7 @@ aiofiles==0.4.0
 aiohttp==3.5.4
 asyncio==3.4.3
 fastai==1.0.61
-pillow==7.0.0
-https://files.pythonhosted.org/packages/95/37/6ee116858f016f1bf1123664142978941df88002f159168be9b709ac0d6c/torch-1.7.0-cp36-none-macosx_10_9_x86_64.whl
-torchvision==0.8.1 
+pillow==7.0.0 
 numpy==1.18.5
 starlette==0.12.0
 uvicorn==0.7.1
